@@ -1,3 +1,4 @@
+<meta charset="UTF-8">
 <h1>Книги</h1>
 
 <% if flash[:success] %>
@@ -14,24 +15,24 @@
     <label for="text-input">Име</label>
     <textarea id="text-input"
               class="form-control"
-              name="text"
+              name="title"
               placeholder="Име"></textarea>
     <label for="text-input">Автор</label>
     <textarea id="text-input"
               class="form-control"
-              name="text"
+              name="author"
               placeholder="Автор"></textarea>
 
     <label for="text-input">Жанр</label>
     <textarea id="text-input"
               class="form-control"
-              name="text"
+              name="genre"
               placeholder="Жанр"></textarea>
 
     <label for="text-input">Описание</label>
     <textarea id="text-input"
               class="form-control"
-              name="text"
+              name="description"
               placeholder="Описание"></textarea>
   </div>
 
@@ -45,6 +46,6 @@
 <% end %>
 <% @books.each do |book| %>
     <p>
-      <strong><%= book.title %></strong>: <%= book.description %>
+      <strong><%= book.author %></strong>: <%= book.title %>
     </p>
 <% end %>

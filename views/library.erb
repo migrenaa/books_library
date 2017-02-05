@@ -1,5 +1,4 @@
 <meta charset="UTF-8">
-<h1>Книги</h1>
 
 <% if flash[:success] %>
     <p class="bg-success"><%= flash[:success] %></p>
@@ -9,14 +8,68 @@
     <p class="bg-danger"><%= flash[:error] %></p>
 <% end %>
 
+<h1>Добави книга</h1>
+<form method="post" action="/libraries/books">
+    <div class="form-group">
+      <label for="text-input">Книга</label>
+      <textarea id="text-input"
+                class="form-control"
+                name="book_id"
+                placeholder="ID"></textarea>
+      <label for="text-input">Библиотека</label>
+      <textarea id="text-input"
+                class="form-control"
+                name="library_id"
+                placeholder="библиотека"></textarea>
+      <label for="text-input">broi</label>
+      <textarea id="text-input"
+                class="form-control"
+                name="count"
+                placeholder="библиотека"></textarea>
+    </div>
+    <button type="submit" class="btn btn-default">Добави</button>
+  </form>
 
-<h2>Книги</h2>
 
-<% if @libraries.books.empty? %>
-    В момента няма налични книги
-<% end %>
-<% @libraries.books.each do |book| %>
-    <p>
-      <strong><%= book.author %></strong>: <%= book.title %>
+<h1>Добави нова книга</h1>
+<form method="post" action="/book">
+
+  <div class="form-group">
+    <label for="text-input">Име</label>
+    <textarea id="text-input"
+              class="form-control"
+              name="title"
+              placeholder="Име"></textarea>
+    <label for="text-input">Автор</label>
+    <textarea id="text-input"
+              class="form-control"
+              name="author"
+              placeholder="Автор"></textarea>
+
+    <label for="text-input">Жанр</label>
+    <textarea id="text-input"
+              class="form-control"
+              name="genre"
+              placeholder="Жанр"></textarea>
+
+    <label for="text-input">Описание</label>
+    <textarea id="text-input"
+              class="form-control"
+              name="description"
+              placeholder="Описание"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-default">Добави</button>
+</form>
+
+<h1>Налични книги</h1>
+  <% if @books.empty? %>
+      В момента няма налични книги
+  <% end %>
+  <% @books.each do |book| %>
+      <p>
+      <form method="get" action="/books">
+        <h3><a href="/books?id=<%= book.id %>"><%= book.title %></a></h3>
+      </form>
     </p>
-<% end %>
+  <% end %>

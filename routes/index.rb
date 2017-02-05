@@ -1,5 +1,5 @@
 get '/' do
-  @books = Book.all
+  @libraries  = Library.all
 
   erb :index
 end

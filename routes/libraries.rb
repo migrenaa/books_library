@@ -1,21 +1,21 @@
 get '/libraries' do
-  @libraries = Library.all
-
-  erb :libraries
-end
-
-get '/libraries/:id' do
-  @library = Library.find(params[:id])
+  @library = Library.find(params[:id]).name
+  @books = BooksInLibrary.find_all {|b| b.library_id == [params[:id]]}.books
 
   erb :library
 end
 
-get 'libraries/:id/books' do
-  @books = Library.find([params[:id]]).books
+post '/libraries/books' do
+  library = Library.find([params[:library_id]])
+  book = Book.find([params[:book_id]])
 
-  erb :index
+  unless library or book
+    books_in_library = BooksInLibrary.new(count: params[:count], book_id: params[:books_id], library_id: params[:library_id])
+    books_in_library.save
+  end
+
+  erb :library
 end
-
 
 
 post '/libraries' do

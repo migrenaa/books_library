@@ -13,11 +13,35 @@
 ActiveRecord::Schema.define(version: 20170204144710) do
 
   create_table "books", force: :cascade do |t|
-    t.string  "title"
-    t.string  "author"
-    t.string  "genre"
-    t.text    "description"
-    t.boolean "is_deleted",  default: false
+    t.string "title"
+    t.string "author"
+    t.string "genre"
+    t.text   "description"
+  end
+
+  create_table "books_in_libraries", force: :cascade do |t|
+    t.integer "count"
+    t.integer "library_id"
+    t.integer "book_id"
+  end
+
+  create_table "libraries", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password"
+    t.string "username"
+    t.string "name"
+  end
+
+  create_table "users_books", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "book_in_library_id"
+    t.text    "date_to_return"
+    t.text    "date_taken"
   end
 
 end

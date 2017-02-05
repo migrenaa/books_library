@@ -1,9 +1,3 @@
-get '/books' do
-  @books = Book.all
-
-  erb :index
-end
-
 post '/book' do
   book = Book.new(title: params[:title], author: params[:author], genre: params[:genre], description: params[:description])
 
@@ -15,33 +9,34 @@ post '/book' do
   redirect '/'
 end
 
-get '/books/:id' do
+get '/books' do
   @book = Books.find(params[:id])
 
   erb :book
 end
 
-get '/books/name/:name' do
+get '/books' do
   @book = Books.all.find_all {|b| b.name == (params[:name])}
 
   erb :index
 end
 
-get 'books/genre/:genre' do
+get 'books' do
   @books = Book.all.find_all {|b| b.genre == params[:genre]}
 
   erb :index
 end
 
-get '/books/description/:description' do
+get '/books' do
   @books = Book.all.find_all {|b| b.description == params[:description]}
 
   erb :index
 end
 
-delete '/books/:id' do
+delete '/books' do
   book = Book.delete(params[:id])
-  redirect to("/")
+
+  erb :index
 end
 
 

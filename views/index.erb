@@ -1,4 +1,10 @@
 <meta charset="UTF-8">
+
+<form action="/register" method="post">
+  <input type="submit" value="Register"
+         name="Submit" id="frm1_submit" />
+</form>
+
 <h1>Библиотеки</h1>
 
 <% if flash[:success] %>
@@ -7,6 +13,17 @@
 
 <% if flash[:error] %>
     <p class="bg-danger"><%= flash[:error] %></p>
+<% end %>
+
+<% if @libraries.empty? %>
+    В момента няма налични книги
+<% end %>
+<% @libraries.each do |library| %>
+    <p>
+    <form method="get" action="/libraries?id=">
+      <h3><a href="/libraries?id=<%= library.id %>"><%= library.name %></a></h3>
+    </form>
+    </p>
 <% end %>
 
 

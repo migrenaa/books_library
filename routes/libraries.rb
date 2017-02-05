@@ -15,3 +15,17 @@ get 'libraries/:id/books' do
 
   erb :index
 end
+
+
+
+post '/libraries' do
+  library = Library.new(name: params[:name], address: params[:address])
+
+  if(library.save)
+    flash[:success] = 'library saved.'
+  else
+    flash[:error] = "There is an error: #{library.errors.full_message.to_sentence}"
+  end
+
+  redirect '/'
+end

@@ -9,13 +9,14 @@
     <p class="bg-danger"><%= flash[:error] %></p>
 <% end %>
 
-<h2>Библиотеки:</h2>
 
-<% if @libraries.empty? %>
-    Няма регистрирани библиотеки
+<h2>Книги</h2>
+
+<% if @libraries.books.empty? %>
+    В момента няма налични книги
 <% end %>
-<% @libraries.each do |library| %>
+<% @libraries.books.each do |book| %>
     <p>
-      <strong><%= library.name %></strong>: <%= library.address %>
+      <strong><%= book.author %></strong>: <%= book.title %>
     </p>
 <% end %>

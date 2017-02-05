@@ -1,0 +1,10 @@
+<h2>Съществуващи книги:</h2>
+
+<% if @books.empty? %>
+    В момента няма налични книги
+<% end %>
+<% @books.each do |book| %>
+    <p>
+      <strong><%= book.author %></strong>: <%= book.title %>
+    </p>
+<% end %>
